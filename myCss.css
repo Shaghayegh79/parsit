@@ -1,0 +1,13 @@
+.floating-box {
+    float: left;
+    margin-left: 1%;
+   
+}
+.right-box {
+    float: right;
+    margin-right: 1%;
+   
+}
+.header-footer-box {
+    clear: left;
+}

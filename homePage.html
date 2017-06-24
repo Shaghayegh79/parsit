@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <!-- Latest compiled and minified CSS -->
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="myCss.css">
+<script src="angular.js"></script>
+<script src="myApp.js"></script>
+<script src="angular-resource.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="ordinazione.controller.js"></script>
+<script src="ordinazione.service.js"></script>
+<script src="prodotti.service.js"></script>
+<script src="ingextra.service.js"></script>
+<script src="Login.service.js"></script>
+<script src="GetIdCliente.service.js"></script>
+
+<body ng-controller="OrdinazioneCtrl as ctrl">
+  <div class="header-footer-box" style="width: 100%">
+    <h1> parsit</h1>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#listaProdottiPage" data-toggle="tab" id="menu_text">Lista Prodotti</a></li>
+    <li><a href="#listaOrdiniPage" data-toggle="tab" id="menu_text">Lista Ordini</a></li>
+    <li><a href="#logOut" data-toggle="tab" id="menu_text">Log Out</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="listaProdottiPage" class="tab-pane fade in active">
+
+      <div class="floating-box" style="width: 78%">
+        </br>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tr ng-repeat="prodotto in ctrl.listaProdotti">
+                <td>
+                  <a href="#">
+                    <img class="media-object" src="{{prodotto.foto}}" alt="foto">
+                  </a>
+                </td>
+                <td>
+                  <h4 class="media-heading">{{prodotto.nome}} : </h4>{{prodotto.ingredienti}}</td>
+                <td> {{prodotto.prezzo}}</td>
+                <td> <button type="button" ng-click="ctrl.addToCarello($index)" class="btn btn-default btn-lg active">Aggiungi al carello</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-box" style="width: 19%">
+        </br>
+        <div class="panel panel-default">
+          <div class="panel-heading">Panel lista ordini:</div>
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tr ng-repeat="item in ctrl.carello" ng-init="indexCarello = $index">
+                <td style="align-content: left">{{item.nome}}</br>
+                  <div ng-click="ctrl.setFlag($index)">+ Suppl</div>
+                  </br>
+                  <div ng-repeat="ingextra in ctrl.listaIngextra" ng-init="indexIngextra = $index" ng-show="ctrl.showFlag[indexCarello]"  style="float: left;">
+                    <input type="checkbox" ng-change="ctrl.addToTotal(ingextra.prezzo,indexIngextra,indexCarello)" ng-model="ctrl.carello[indexCarello].ingextra[ingextra.idingextra]"
+                      ng-change="alert('changed')" />  {{ingextra.nome}} : {{ingextra.prezzo}} &euro;&nbsp;&nbsp;&nbsp;&nbsp; 
+                  </div>
+                </td>
+                <td style="align-content: right">{{item.prezzo}}</td>
+              </tr>
+              <tr>
+                <td>totale:</td>
+                <td>{{ctrl.prezzoTotale}}</td>
+              </tr>
+              <tr>
+                <td>nota:</td>
+                <td><input type="input" name="nota" ng-model="ctrl.nota"/></td>
+              </tr>
+               <tr>
+                <td><input type="button" name="concludiBtn" value="concludi" ng-click="ctrl.concludi()"/></button></td>
+              </tr>
+              <tr>
+                <td>
+                <form role="form" ng-submit="ctrl.doLogin()" ng-hide="ctrl.auth && ctrl.auth.length != 0">
+                    username:<input type="text" name="username" ng-model="ctrl.username"/>
+                  </br>password: <input type="text" name="password" ng-model="ctrl.password"/>
+                    <input type="submit" name="username" ng-model="ctrl.credentials.username"/>
+
+                </form>
+                </td>
+              </tr>
+            </table>
+            {{ctrl.carello}}
+</br>ordine:
+            {{ctrl.ordine}}
+            </br>
+            {{ctrl.auth}}
+                        </br>
+            {{ctrl.idCliente}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="listaOrdiniPage" class="tab-pane fade">
+      <h1> lista Ordini</h1>
+    </div>
+    
+    <div id="logOut" class="tab-pane fade">
+      <h1> LogOut</h1>
+    </div>
+  </div>
+  <div class="header-footer-box">
+    Another box, after the floating boxes...
+  </div>
+</body>
+</html>
