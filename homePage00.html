@@ -11,10 +11,12 @@
 <script src="angular-resource.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 <script src="ordinazione.controller.js"></script>
-<script src="Ordinazione.service.js"></script>
+<script src="ordinazione.service.js"></script>
 <script src="prodotti.service.js"></script>
 <script src="ingextra.service.js"></script>
 <script src="Login.service.js"></script>
+<script src="GetIdCliente.service.js"></script>
+
 <body ng-controller="OrdinazioneCtrl as ctrl">
   <div class="header-footer-box" style="width: 100%">
     <h1> parsit</h1>
@@ -50,7 +52,7 @@
         </div>
       </div>
 
-      <div class="right-box" data-spy="affix" style="width: 19%">
+      <div class="right-box" style="width: 19%">
         </br>
         <div class="panel panel-default">
           <div class="panel-heading">Panel lista ordini:</div>
@@ -60,8 +62,8 @@
                 <td style="align-content: left">{{item.nome}}</br>
                   <div ng-click="ctrl.setFlag($index)">+ Suppl</div>
                   </br>
-                  <div ng-repeat="ingextra in ctrl.listaIngextra" ng-init="indexIngextra = $index" ng-show="ctrl.showFlag[indexCarello]"  style="float: left;">
-                    <input type="checkbox" ng-change="ctrl.addToTotal(ingextra.prezzo,indexIngextra,indexCarello)" ng-model="ctrl.carello[indexCarello].ingextra[indexIngextra]"
+                 <div ng-repeat="ingextra in ctrl.listaIngextra" ng-init="indexIngextra = $index" ng-show="ctrl.showFlag[indexCarello]" style="float: left;">
+                    <input type="checkbox" ng-change="ctrl.addToTotal(ingextra.prezzo,ingextra.idingextra,indexCarello)" ng-model="ctrl.carello[indexCarello].ingextra[ingextra.idingextra]"
                       ng-change="alert('changed')" />  {{ingextra.nome}} : {{ingextra.prezzo}} &euro;&nbsp;&nbsp;&nbsp;&nbsp; 
                   </div>
                 </td>
@@ -76,7 +78,7 @@
                 <td><input type="input" name="nota" ng-model="ctrl.nota"/></td>
               </tr>
                <tr>
-                <td><input type="button" name="concludiBtn" value="concludi" ng-click="ctrl.login0()"/></button></td>
+                <td><input type="button" name="concludiBtn" value="concludi" ng-click="ctrl.concludi()"/></button></td>
               </tr>
               <tr>
                 <td>
@@ -89,15 +91,15 @@
                 </td>
               </tr>
             </table>
-            {{ctrl.carello}}
-</br>ordine:
-            {{ctrl.ordine}}</br>
-            {{ctrl.auth}}
+           
+
           </div>
         </div>
+
       </div>
     </div>
-   <div id="listaOrdiniPage" class="tab-pane fade">
+
+    <div id="listaOrdiniPage" class="tab-pane fade">
       <h1> lista Ordini</h1>
     </div>
     
@@ -108,6 +110,5 @@
   <div class="header-footer-box">
     Another box, after the floating boxes...
   </div>
-{{ctrl.auth}}</br>
 </body>
 </html>

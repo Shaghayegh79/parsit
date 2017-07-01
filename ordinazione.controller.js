@@ -6,8 +6,6 @@
         this.auth=false;
         this.idCliente=0;
         this.doLogin=doLogin;
-       // var username="goliuser";
-        //var password="234";
         var self = this;
         function doLogin(){
             loginSvc.login(self.username,self.password)
@@ -19,17 +17,9 @@
                         });
            
                        }
-       // loginSvc.setUserPass(self.username,self.password);
-        //try { 
-    //        self.auth0 = loginSvc.login(username,password).get().$promise.then(function(data) {
-  //                                                   self.auth = data;
-//            });
 
-       // } catch(err) { this.errorMessage="invali username o password"; }
-        
         var ingextraSelected={};
         var credentials = {};
-        //this.authorizato=false;
         ProdottiSvc.getProdotti()
             .then(function (data) {
                 self.listaProdotti = data;
@@ -39,22 +29,8 @@
                 self.listaIngextra = data;
             });
        
-
-        
-             //self.authorizato= loginSvc.login();
-            //self.authorizato = lognSvc.get();
-           // self=this;
-            //if (typeof self.authorizato === 'undefined') {self.authorizato = false;}        
-            //UserSvs.query();//self.credentials.username, self.credentials.password);
-     //       alert(self.authorizato);  
-           // LoginSvc.login(self.credentials.username, self.credentials.password);
-             //   .then(function (data) {
-   //                       self.authorizato = data;
- //                   });
-            //if (self.creaCarelloHelper!=null) self.concludi();
-        
-        this.addToTotal= function(ingextraPrezzo,indexIngextra,indexCarello){
-            if(this.carello[indexCarello].ingextra[indexIngextra]==true) this.prezzoTotale= this.prezzoTotale + ingextraPrezzo;
+        this.addToTotal= function(ingextraPrezzo,idIngextra,indexCarello){
+            if(this.carello[indexCarello].ingextra[idIngextra]==true) this.prezzoTotale= this.prezzoTotale + ingextraPrezzo;
             else this.prezzoTotale= this.prezzoTotale - ingextraPrezzo;
         };
 
@@ -68,9 +44,34 @@
             this.prezzoTotale = this.prezzoTotale + prezzo;
 
         };
-        this.setFlag=function(indexCarello){
+        this.removeFromCarello = function (indexCarello) {
+            alert(indexCarello);
+            var prezzo = this.carello[indexCarello].prezzo;
+            this.prezzoTotale = this.prezzoTotale - prezzo;
+            for (i=0;i<Object.keys(this.carello[indexCarello].ingextra).length;i++)
+            {
+                self.idIngextraScelta = Object.keys(this.carello[indexCarello].ingextra)[i];
+                TrueFalseIngextraScelta = Object.values(this.carello[indexCarello].ingextra)[i];
+                if (TrueFalseIngextraScelta)
+                {   
+                    for (var index in self.listaIngextra) {
+                      //alert(Object.keys(self.listaIngextra[index])[0]);
+                      //alert(self.idIngextraScelta+"-"+self.listaIngextra[index].idingextra);
+                        if (self.idIngextraScelta == self.listaIngextra[index].idingextra) {
+                            this.prezzoTotale = this.prezzoTotale - self.listaIngextra[index].prezzo;
+                        }
+                    }
+                }
+            }
+
+           if (this.carello.length===1) this.carello.splice(-1,1);
+           else  this.carello.splice(indexCarello,1);
+           //if (typeof this.carello[indexCarello+1] !== "undefined") this.carello[indexCarello+1].
+        };
+
+        this.setFlag=function(index){
            if (typeof this.showFlag === 'undefined') {this.showFlag = [];}        
-           this.showFlag[indexCarello]= !this.showFlag[indexCarello];
+           this.showFlag[index]= !this.showFlag[index];
         };
        this.creaVociCarello=function(item){
                         self.vociCarello = [];
