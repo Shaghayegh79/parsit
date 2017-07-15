@@ -13,6 +13,8 @@
   <div class="page-header col-sm-12">
     <h1>Example page header <small>Subtext for header</small></h1>
   </div>
+
+
   <div class="container" ng-hide="ctrl.auth">
     <div class="row" ng-hide="ctrl.auth">
       <div class="col-sm-4"></div>
@@ -67,7 +69,7 @@
                       <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                         {{item.id}}</td>
                       <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
-                        <div ng-click="ctrl.setFlag(indexAutore,item.id)">+</div>
+                        <div ng-click="ctrl.setFlag(indexAutore,item.id)"><span class="glyphicon glyphicon-plus-sign"></span></div>
                       </td>
                     </tr>
                     <tr>
@@ -80,6 +82,7 @@
                             <td style="align-content: center">Pagine</td>
                             <td style="align-content: center">Prezzo</td>
                             <td style="align-content: center">Sconto</td>
+                            <td style="align-content: center"></td>
                           </tr>
                           <tr ng-repeat="libro in item.libri">
                             <td style="align-content: left"> {{libro.titolo}} </td>
@@ -87,6 +90,45 @@
                             <td style="align-content: center">{{libro.pagine}}</td>
                             <td style="align-content: center">{{libro.prezzo}}</td>
                             <td style="align-content: center">{{libro.sconto}}</td>
+                            <td style="align-content: center">
+                              <span class="glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#myModal">
+                              </span>
+                              <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <p>
+                                        <table>
+                                          <tr>
+                                            <td>
+                                                <img ng-src="{{libro.immagine}}" alt="immagine della copertina" />
+                                            </td>
+                                            <td>
+                                             Titolo: {{libro.titolo}}</br>
+                                             Autore: {{libro.autore}}</br></br>
+                                             Prezzo: {{libro.prezzo}}	&euro;</br>
+                                             Sconto: {{libro.sconto}}%</br>
+                                             info: {{libro.info}}</br></br>
+                                             Anno: {{libro.anno}}</br>
+                                             pagine: {{libro.pagine}}</br></br>
+                                             Editore: {{libro.editore}}</br>
+                                             Collana: {{libro.collana}}</br>
+                                             ISBN: {{libro.ISBN}}</br>
+                     
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              
+                              </td>
                           </tr>
                         </table>
                       </td>
