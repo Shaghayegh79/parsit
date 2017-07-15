@@ -1,17 +1,28 @@
 (function () {
+    
     var app = angular.module('myapp');
     app.controller('libreriaCtrl',['loginSvc','AutoreSvc',function(loginSvc,AutoreSvc) {
+        this.doLogin = doLogin;
+        this.sortBy = sortBy;
+        this.setFlag=setFlag;
+
         this.auth=false;
-        this.doLogin=doLogin;
+        this.propertyName = 'autore';
+        this.reverse = true;
         var self = this;
-        this.setFlag=function(indexAutore,id){
+
+       function sortBy(propertyName) {
+            self.reverse = (self.propertyName === propertyName) ? !self.reverse : false;
+            self.propertyName = propertyName;
+        };
+
+        function setFlag(indexAutore,id){
            self.idAutore=id;
-           //self.indexAutore=indexAutore;
-          // alert(self.indexAutore);
            if (typeof this.showFlag === 'undefined') {this.showFlag = [];}        
            this.showFlag[indexAutore]= !this.showFlag[indexAutore];
 
         }
+
         function doLogin(){
             loginSvc.login(self.username,self.password)
                 .then(function(data){

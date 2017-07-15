@@ -53,12 +53,12 @@
             lista Autori:
             <table class="table table-striped" border="1">
               <tr>
-                <td name="thAutore" style="align-content: left; width: 50%"> Autore </td>
-                <td name="thNickName" style="align-content: left; width: 40%"> NickName</td>
-                <td name="thId" style="align-content: left"> &nbsp;&nbsp; &nbsp;&nbsp;Id</td>
-                <td name="thPlus"></td>
+                <td style="align-content: left; width: 50%"> Autore <span ng-click="ctrl.sortBy('autore')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <td  style="align-content: left; width: 40%"> NickName<span ng-click="ctrl.sortBy('nickName')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <td style="align-content: left"> &nbsp;&nbsp; &nbsp;&nbsp;Id<span ng-click="ctrl.sortBy('id')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <td></td>
               </tr>
-              <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+              <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori | orderBy:ctrl.propertyName:ctrl.reverse" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                 <td colspan="4" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                   <table class="table table-striped" item-width="100%">
                     <tr>
@@ -77,14 +77,14 @@
 
                         <table border="1" style="width: 90%">
                           <tr>
-                            <td style="align-content: left">Titolo</td>
-                            <td style="align-content: center">Anno</td>
-                            <td style="align-content: center">Pagine</td>
-                            <td style="align-content: center">Prezzo</td>
-                            <td style="align-content: center">Sconto</td>
+                            <td style="align-content: left">Titolo<span ng-click="ctrl.sortBy('titolo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Anno<span ng-click="ctrl.sortBy('anno')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Pagine<span ng-click="ctrl.sortBy('pagine')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Prezzo<span ng-click="ctrl.sortBy('prezzo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Sconto<span ng-click="ctrl.sortBy('sconto')" class="glyphicon glyphicon-triangle-bottom"></span></td>
                             <td style="align-content: center"></td>
                           </tr>
-                          <tr ng-repeat="libro in item.libri">
+                          <tr ng-repeat="libro in item.libri | orderBy:ctrl.propertyName:ctrl.reverse">
                             <td style="align-content: left"> {{libro.titolo}} </td>
                             <td style="align-content: center">{{libro.anno}}</td>
                             <td style="align-content: center">{{libro.pagine}}</td>
