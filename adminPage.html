@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="myCss.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="header-footer-box">
+    <h1> parsit</h1>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#listaOrdiniPage" data-toggle="tab" id="menu_text">Lista Ordini</a></li>
+    <li><a href="#archivioOrdiniPage" data-toggle="tab" id="menu_text">Archivio Ordini</a></li>
+    <li><a href="#listaClientiPage" data-toggle="tab" id="menu_text">Lista Clienti</a></li>
+    <li><a href="#listaCommentiPage" data-toggle="tab" id="menu_text">Lista Commenti</a></li>
+    <li><a href="#listaProdottiPage" data-toggle="tab" id="menu_text">Lista Prodotti</a></li>
+    <li><a href="#logOut" data-toggle="tab" id="menu_text">Log Out</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="listaOrdiniPage" role="tabpanel">ordini nuovi
+
+    </div>
+    <div class="tab-pane fade" id="archivioOrdiniPage" role="tabpanel">archivio ordini</div>
+    <div class="tab-pane fade" id="listaClientiPage" role="tabpanel">clienti</div>
+    <div class="tab-pane fade" id="listaCommentiPage" role="tabpanel">commenti</div>
+    <div class="tab-pane fade" id="listaProdottiPage" role="tabpanel">prodotti
+      <div ng-controller="CrudProdottiCtrl">
+        nome prodotto : <input type="text" nome="nome" ng-model="nome"/></br>
+        tipo prodotto: <input type="text" nome="tipoProdotto" ng-model="tipoProdotto"/></br>
+        Prezzo: <input type="text" nome="prezzo" ng-model="prezzo"/></br>
+        ingredienti: <input type="text" nome="ingredienti" ng-model="ingredienti"/></br>
+        foto: <input type="file" file-model="myFile" /></br>
+        disponibilità: <select name="disponibile" ng-model="disponibile"></br>
+          <option value="disponibile">disponibile</option>
+          <option value="non disponibile">non disponibile</option>
+        </select></br>
+        <button ng-click="addProdottoNuovo()">Aggiungi Prodotto</button>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="logOut" role="tabpanel">logOut</div>
+
+  </div>
+
+
+  <div class="header-footer-box">
+    Another box, after the floating boxes...
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="angular.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="myApp.js"></script>
+<script src="ordinazione.controller.js"></script>
+<script src="ordinazione.service.js"></script>
+<script src="ListaOrdini.service.js"></script>
+<script src="prodotti.service.js"></script>
+<script src="ingextra.service.js"></script>
+<script src="Login.service.js"></script>
+<script src="GetIdCliente.service.js"></script>
+<script src="CrudProdotti.service.js"></script>
+<script src="CrudProdotti.controller.js"></script>
+<script src="FileModel.directive.js"></script>
+
+</html>

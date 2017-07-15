@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-controller="libreriaCtrl as ctrl">
+  <div class="page-header col-sm-12">
+    <h1>Example page header <small>Subtext for header</small></h1>
+  </div>
+  <div class="container" ng-hide="ctrl.auth">
+    <div class="row" ng-hide="ctrl.auth">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            Login : </br>
+            <input type="text" placeholder="example@gmail.com" ng-model="ctrl.username"> </br>
+            <input type="password" placeholder="password" ng-model="ctrl.password"> </br>
+            <button ng-click="ctrl.doLogin()">Login</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+   </div>
+   <div class="container" ng-show="ctrl.auth">
+    <div class="row">
+      <div class="col-sm-3" style="height: 90%">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            left
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            vuoto
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            lista Autori:
+            <table class="table table-striped" border="1">
+              <tr>
+                <td style="align-content: left"> Autore </td>
+                <td style="align-content: left"> NickName</td>
+                <td style="align-content: left"> Id</td>
+                <td></td>
+              </tr>
+              
+              <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori">
+                <td style="align-content: left"> {{item.autore}} </td>
+                <td style="align-content: left">{{item.nickName}}</td>
+                <td style="align-content: left">{{item.id}}</td>
+                <td><div ng-click="ctrl.setFlag(indexAutore,item.id)">+</div></td>
+              </tr>
+              <tr>
+                <td ng-show="ctrl.showFlag[ctrl.indexAutore]" colspan="4">
+                  
+                        <table border= "1"  style="width: 90%">
+                          <tr>
+                            <td style="align-content: left">Titolo</td>
+                            <td style="align-content: center">Anno</td>
+                            <td style="align-content: center">Pagine</td>
+                            <td style="align-content: center">Prezzo</td>
+                            <td style="align-content: center">Sconto</td>
+                          </tr>
+                          <tr ng-repeat="libro in ctrl.listaAutori[ctrl.idAutore].libri">
+                            <td style="align-content: left"> {{libro.titolo}} </td>
+                            <td style="align-content: center">{{libro.anno}}</td>
+                            <td style="align-content: center">{{libro.pagine}}</td>
+                            <td style="align-content: center">{{libro.prezzo}}</td>
+                            <td style="align-content: center">{{libro.sconto}}</td>
+                          </tr>
+                        </table>
+                </td>
+              
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>{{ctrl.auth}}</br>
+  <div class="page-footer col-sm-12">
+    <h1>Example page header <small>Subtext for header</small></h1>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="angular.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+<script src="myApp.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="login.service.js"></script>
+<script src="libreria.controller.js"></script>
+<script src="autore.service.js"></script>
+
+
+</html>

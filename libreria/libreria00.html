@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">left</div>
+        <div class="col-sm-9">
+            <div class="panel panel-default" ng-hide="ctrl.auth">
+                <div class="panel-body">
+                    Login : </br>
+                    <input type="text" placeholder="example@gmail.com" ng-model="ctrl.username"> </br>
+                    <input type="password" placeholder="password" ng-model="ctrl.password"> </br>
+                    <button ng-click="ctrl.doLogin()">Login</button>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-show="ctrl.auth">
+                <div class="panel-body">
+                    lista Autori:
+                    <table class="table table-striped">
+                        <tr ng-repeat="(indexAutore,item) in ctrl.carello">
+                            <td style="align-content: left"> {{item.nome}} </td>
+                            <td style="align-content: left">{{item.età}}</td>
+                            <td style="align-content: left">{{item.nickName}}</td>
+                            <td style="align-content: left">{{item.id}}</td>
+                            <td ng-click="ctrl.setFlag(indexAutore)" style="align-content: center">+</td>
+                            <td colspan="5">
+                                <div ng-repeat="libro in ctrl.libriAutore" ng-show="ctrl.showFlag[indexAutore]">
+                                    <table>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+</div>
