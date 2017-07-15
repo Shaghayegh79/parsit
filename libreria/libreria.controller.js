@@ -6,7 +6,7 @@
         var self = this;
         this.setFlag=function(indexAutore,id){
            self.idAutore=id;
-           self.indexAutore=indexAutore;
+           //self.indexAutore=indexAutore;
           // alert(self.indexAutore);
            if (typeof this.showFlag === 'undefined') {this.showFlag = [];}        
            this.showFlag[indexAutore]= !this.showFlag[indexAutore];

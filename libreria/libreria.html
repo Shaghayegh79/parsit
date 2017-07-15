@@ -28,8 +28,8 @@
       </div>
       <div class="col-sm-4"></div>
     </div>
-   </div>
-   <div class="container" ng-show="ctrl.auth">
+  </div>
+  <div class="container" ng-show="ctrl.auth">
     <div class="row">
       <div class="col-sm-3" style="height: 90%">
         <div class="panel panel-default">
@@ -51,22 +51,29 @@
             lista Autori:
             <table class="table table-striped" border="1">
               <tr>
-                <td style="align-content: left"> Autore </td>
-                <td style="align-content: left"> NickName</td>
-                <td style="align-content: left"> Id</td>
-                <td></td>
+                <td name="thAutore" style="align-content: left; width: 50%"> Autore </td>
+                <td name="thNickName" style="align-content: left; width: 40%"> NickName</td>
+                <td name="thId" style="align-content: left"> &nbsp;&nbsp; &nbsp;&nbsp;Id</td>
+                <td name="thPlus"></td>
               </tr>
-              
-              <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori">
-                <td style="align-content: left"> {{item.autore}} </td>
-                <td style="align-content: left">{{item.nickName}}</td>
-                <td style="align-content: left">{{item.id}}</td>
-                <td><div ng-click="ctrl.setFlag(indexAutore,item.id)">+</div></td>
-              </tr>
-              <tr>
-                <td ng-show="ctrl.showFlag[ctrl.indexAutore]" colspan="4">
-                  
-                        <table border= "1"  style="width: 90%">
+              <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                <td colspan="4" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                  <table class="table table-striped" item-width="100%">
+                    <tr>
+                      <td style="width: 50% ;align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        {{item.autore}}</td>
+                      <td style="width: 40% ;align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        {{item.nickName}}</td>
+                      <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        {{item.id}}</td>
+                      <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        <div ng-click="ctrl.setFlag(indexAutore,item.id)">+</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td ng-show="ctrl.showFlag[indexAutore]" colspan="4">
+
+                        <table border="1" style="width: 90%">
                           <tr>
                             <td style="align-content: left">Titolo</td>
                             <td style="align-content: center">Anno</td>
@@ -74,7 +81,7 @@
                             <td style="align-content: center">Prezzo</td>
                             <td style="align-content: center">Sconto</td>
                           </tr>
-                          <tr ng-repeat="libro in ctrl.listaAutori[ctrl.idAutore].libri">
+                          <tr ng-repeat="libro in item.libri">
                             <td style="align-content: left"> {{libro.titolo}} </td>
                             <td style="align-content: center">{{libro.anno}}</td>
                             <td style="align-content: center">{{libro.pagine}}</td>
@@ -82,9 +89,12 @@
                             <td style="align-content: center">{{libro.sconto}}</td>
                           </tr>
                         </table>
+                      </td>
+
+                    </tr>
                 </td>
-              
               </tr>
+              </table>
             </table>
           </div>
         </div>
