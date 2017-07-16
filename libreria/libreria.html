@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="myapp">
-
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
@@ -10,20 +9,24 @@
 </head>
 
 <body ng-controller="libreriaCtrl as ctrl">
+  
   <div class="page-header col-sm-12">
-    <h1>Example page header <small>Subtext for header</small></h1>
+    <div  ng-show="ctrl.auth"  style="align-content: right">
+       Ciao &nbsp;{{ctrl.username}},&nbsp;
+      <span ng-click="ctrl.auth=false" ><a>logout</a></span>
+    </div>
   </div>
 
 
   <div class="container" ng-hide="ctrl.auth">
     <div class="row" ng-hide="ctrl.auth">
       <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            Login : </br>
-            <input type="text" placeholder="example@gmail.com" ng-model="ctrl.username"> </br>
-            <input type="password" placeholder="password" ng-model="ctrl.password"> </br>
+      <div class="col-sm-4" style="align-content: justify">
+        <div class="panel panel-default" style="align-content: justify">
+          <div class="panel-body" style="align-content: justify">
+             
+            Login &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="username" ng-model="ctrl.username">
+            password &nbsp;&nbsp;&nbsp;&nbsp;  <input type="password" placeholder="password" ng-model="ctrl.password"> </br></br>
             <button ng-click="ctrl.doLogin()">Login</button>
           </div>
         </div>
@@ -33,15 +36,16 @@
   </div>
   <div class="container" ng-show="ctrl.auth">
     <div class="row">
-      <div class="col-sm-3" style="height: 90%">
+      <div class="row-height">
+      <div class="col-sm-3 col-height">
         <div class="panel panel-default">
           <div class="panel-body">
             left
           </div>
         </div>
       </div>
-
-      <div class="col-sm-9">
+      </div>
+      <div class="col-sm-9 col-height">
         <div class="panel panel-default">
           <div class="panel-body">
             vuoto
@@ -50,87 +54,96 @@
 
         <div class="panel panel-default">
           <div class="panel-body">
-            lista Autori:
+            Lista Autori:
             <table class="table table-striped" border="1">
-              <tr>
-                <td style="align-content: left; width: 50%"> Autore <span ng-click="ctrl.sortBy('autore')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                <td  style="align-content: left; width: 40%"> NickName<span ng-click="ctrl.sortBy('nickName')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                <td style="align-content: left"> &nbsp;&nbsp; &nbsp;&nbsp;Id<span ng-click="ctrl.sortBy('id')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                <td></td>
+              <tr style="font-style: bold">
+                <th style="align-content: left; width: 50%"> Autore <span ng-click="ctrl.sortBy('autore')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <th style="align-content: left; width: 8%"> Età<span ng-click="ctrl.sortBy('age')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <th style="align-content: left; width: 28%"> NickName<span ng-click="ctrl.sortBy('nickName')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <th style="align-content: left; width: 11%"> Id<span ng-click="ctrl.sortBy('id')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                <th></td>
               </tr>
               <tr ng-repeat="(indexAutore,item) in ctrl.listaAutori | orderBy:ctrl.propertyName:ctrl.reverse" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
-                <td colspan="4" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                <td colspan="5" style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                   <table class="table table-striped" item-width="100%">
                     <tr>
-                      <td style="width: 50% ;align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
-                        {{item.autore}}</td>
-                      <td style="width: 40% ;align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                      <td style="width: 50% ;align-content: left;padding-top: 10px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        &nbsp;&nbsp;{{item.autore}}</td>
+                      <td style="width: 4% ;align-content: left;padding-top: 10px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        {{item.age}}</td>
+                      <td style="width: 33% ;align-content: left;padding-top: 10px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                         {{item.nickName}}</td>
-                      <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                      <td style="width: 9% ;align-content: left;padding-top: 10px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
                         {{item.id}}</td>
-                      <td style="align-content: left;padding-top: 0px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
-                        <div ng-click="ctrl.setFlag(indexAutore,item.id)"><span class="glyphicon glyphicon-plus-sign"></span></div>
+                      <td style="align-content: left;padding-top: 10px;padding-bottom: 0px;padding-left: 0px;padding-right: 0px;">
+                        <div ng-click="ctrl.setFlag(indexAutore)"><span class="glyphicon glyphicon-plus-sign"></span></div>
                       </td>
                     </tr>
                     <tr>
-                      <td ng-show="ctrl.showFlag[indexAutore]" colspan="4">
+                      <td ng-show="ctrl.showFlag[indexAutore]" colspan="5">
 
-                        <table border="1" style="width: 90%">
+                        <table border="1" style="width: 90%" class="table table-fixed">
+                          
                           <tr>
-                            <td style="align-content: left">Titolo<span ng-click="ctrl.sortBy('titolo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                            <td style="align-content: center">Anno<span ng-click="ctrl.sortBy('anno')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                            <td style="align-content: center">Pagine<span ng-click="ctrl.sortBy('pagine')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                            <td style="align-content: center">Prezzo<span ng-click="ctrl.sortBy('prezzo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
-                            <td style="align-content: center">Sconto<span ng-click="ctrl.sortBy('sconto')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: left">Titolo<span ng-click="ctrl.sortLibriBy('titolo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Anno<span ng-click="ctrl.sortLibriBy('anno')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Pagine<span ng-click="ctrl.sortLibriBy('pagine')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Prezzo<span ng-click="ctrl.sortLibriBy('prezzo')" class="glyphicon glyphicon-triangle-bottom"></span></td>
+                            <td style="align-content: center">Sconto<span ng-click="ctrl.sortLibriBy('sconto')" class="glyphicon glyphicon-triangle-bottom"></span></td>
                             <td style="align-content: center"></td>
                           </tr>
-                          <tr ng-repeat="libro in item.libri | orderBy:ctrl.propertyName:ctrl.reverse">
+                          <tbody>
+                          <tr ng-repeat="libro in item.libri | orderBy:ctrl.propertyLibro:ctrl.reverseLibro track by libro.id">
                             <td style="align-content: left"> {{libro.titolo}} </td>
                             <td style="align-content: center">{{libro.anno}}</td>
                             <td style="align-content: center">{{libro.pagine}}</td>
                             <td style="align-content: center">{{libro.prezzo}}</td>
                             <td style="align-content: center">{{libro.sconto}}</td>
                             <td style="align-content: center">
-                              <span class="glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#myModal">
+                              <span class="glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#myModal{{libro.id}}">
                               </span>
-                              <div class="modal fade" id="myModal" role="dialog">
+
+                              <!-- Modal -->
+                              <div id="myModal{{libro.id}}" class="modal fade" role="dialog">
                                 <div class="modal-dialog">
+
+                                  <!-- Modal content-->
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      <h4 class="modal-title">Modal Header</h4>
                                     </div>
                                     <div class="modal-body">
-                                      <p>
-                                        <table>
-                                          <tr>
-                                            <td>
-                                                <img ng-src="{{libro.immagine}}" alt="immagine della copertina" />
-                                            </td>
-                                            <td>
-                                             Titolo: {{libro.titolo}}</br>
-                                             Autore: {{libro.autore}}</br></br>
-                                             Prezzo: {{libro.prezzo}}	&euro;</br>
-                                             Sconto: {{libro.sconto}}%</br>
-                                             info: {{libro.info}}</br></br>
-                                             Anno: {{libro.anno}}</br>
-                                             pagine: {{libro.pagine}}</br></br>
-                                             Editore: {{libro.editore}}</br>
-                                             Collana: {{libro.collana}}</br>
-                                             ISBN: {{libro.ISBN}}</br>
-                     
-                                            </td>
-                                          </tr>
-                                        </table>
-                                      </p>
+                                      <table>
+                                        <tr>
+                                          <td><img ng-src="images\{{libro.immagine}}" alt="immagine della copertina" /></td>
+                                          <td>
+                                            Titolo: {{libro.titolo}}</br>
+                                            Autore: {{libro.autore}}</br>
+                                            </br>
+                                            Prezzo: {{libro.prezzo}} &euro;</br>
+                                            Sconto: {{libro.sconto}}%</br>
+                                            info: {{libro.info}}</br>
+                                            </br>
+                                            Anno: {{libro.anno}}</br>
+                                            pagine: {{libro.pagine}}</br>
+                                            </br>
+                                            Editore: {{libro.editore}}</br>
+                                            Collana: {{libro.collana}}</br>
+                                            ISBN: {{libro.ISBN}}</br>
+                                          </td>
+                                        </tr>
+                                      </table>
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
-                              
-                              </td>
+                            </td>
                           </tr>
+                          </tbody>
                         </table>
+
                       </td>
 
                     </tr>
@@ -138,15 +151,18 @@
               </tr>
               </table>
             </table>
+
+
           </div>
         </div>
       </div>
 
     </div>
-  </div>{{ctrl.auth}}</br>
+   </div>
   <div class="page-footer col-sm-12">
-    <h1>Example page header <small>Subtext for header</small></h1>
+    <h1></h1>
   </div>
+  {{ctrl.showFlag}}
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <script src="angular.js"></script>
